@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAlbumsQuery, useUsersQuery } from './api/queries'
-import type { Album, User } from '../utilities/types'
+import type { Album } from '../utilities/types'
 import AlbumCard from '../components/AlbumCard'
 import logo from '../assets/gallery_512.png'
 
@@ -20,23 +20,27 @@ function Albums() {
     data: albums,
   } = useAlbumsQuery(offset, limit, !!users)
   return (
-    <div className='max-w-6xl mx-auto px-4'>
-      <div className='flex items-center gap-4 w-96 mx-auto py-4 mb-4'>
-        <img src={logo} width={48} alt='logo' />
-        <h1 className='font-logo text-4xl text-indigo-700 font-bold tracking-wider border-b-2 border-indigo-700'>
-          PhotoBucket
-        </h1>
+    <div className='w-full'>
+      <div className=' bg-violet-800 w-full mx-auto py-4 mb-6 shadow'>
+        <div className='w-96 mx-auto flex gap-4 items-center'>
+          <img src={logo} width={48} alt='logo' />
+          <h1 className='font-logo text-4xl text-center text-white font-bold tracking-wider border-b-2 border-white'>
+            PhotoBucket
+          </h1>
+        </div>
       </div>
-      <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
-        {albums?.map((album: Album) => (
-          <AlbumCard
-            userId={album.userId}
-            user={users?.find(user => user.id === album.userId)}
-            id={album.id}
-            title={album.title}
-            key={album.id}
-          />
-        ))}
+      <div className='max-w-6xl mx-auto px-4'>
+        <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
+          {albums?.map((album: Album) => (
+            <AlbumCard
+              userId={album.userId}
+              user={users?.find(user => user.id === album.userId)}
+              id={album.id}
+              title={album.title}
+              key={album.id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
