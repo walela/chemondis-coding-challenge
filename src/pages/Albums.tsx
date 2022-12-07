@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { useAlbumsQuery } from './api/queries'
+import AlbumCard from '../components/AlbumCard'
 import logo from '../assets/gallery_512.png'
+
+type Album = {
+  userId: number
+  id: number
+  title: string
+}
 
 function Albums() {
   /***
@@ -19,6 +26,17 @@ function Albums() {
         <h1 className='font-logo text-4xl text-indigo-700 font-bold tracking-wider border-b-2 border-indigo-700'>
           PhotoBucket
         </h1>
+        <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
+          {albums?.map((album: Album) => (
+            <AlbumCard
+              userId={album.userId}
+              user={users?.find(user => user.id === album.userId)}
+              id={album.id}
+              title={album.title}
+              key={album.id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
