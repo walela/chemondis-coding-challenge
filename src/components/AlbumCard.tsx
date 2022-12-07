@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom'
+import type { Album, User } from '../utilities/types'
 import stc from 'string-to-color'
 
-type AlbumCardProps = {
-  userId: number
-  title: string
-  id: number
-  user: Record<string, string> | undefined
-}
+type AlbumCardProps = Album & { user: User | undefined }
 
 function AlbumCard({ id, user, title }: AlbumCardProps) {
   // create an invariant placeholder image color from the user id
