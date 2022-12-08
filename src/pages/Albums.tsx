@@ -31,56 +31,35 @@ function Albums() {
 
   if (isLoading)
     return (
-      <div className='w-full'>
-        <div className=' bg-violet-700 w-full mx-auto py-4 mb-6 shadow'>
-          <div className='w-96 mx-auto flex gap-4 items-center'>
-            <img src={logo} width={48} alt='logo' />
-            <h1 className='font-logo text-4xl text-center text-white font-bold tracking-wider border-b-2 border-white'>
-              PhotoBucket
-            </h1>
-          </div>
-        </div>
-        <div className='max-w-6xl mx-auto px-4'>
-          <h1 className='text-2xl text-center py-4'>Hello {limit}</h1>
-          <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
-            {[...Array(limit).keys()].map(i => (
-              <AlbumSkeleton key={i} />
-            ))}
-          </div>
+      <div className='max-w-6xl mx-auto px-4'>
+        <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
+          {[...Array(limit).keys()].map(i => (
+            <AlbumSkeleton key={i} />
+          ))}
         </div>
       </div>
     )
   return (
-    <div className='w-full'>
-      <div className=' bg-violet-700 w-full mx-auto py-4 mb-6 shadow'>
-        <div className='w-96 mx-auto flex gap-4 items-center'>
-          <img src={logo} width={48} alt='logo' />
-          <h1 className='font-logo text-4xl text-center text-white font-bold tracking-wider border-b-2 border-white'>
-            PhotoBucket
-          </h1>
-        </div>
+    <div className='max-w-6xl mx-auto px-4'>
+      <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
+        {albums?.map((album: Album) => (
+          <AlbumCard
+            userId={album.userId}
+            user={users?.find(user => user.id === album.userId)}
+            id={album.id}
+            title={album.title}
+            key={album.id}
+          />
+        ))}
       </div>
-      <div className='max-w-6xl mx-auto px-4'>
-        <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
-          {albums?.map((album: Album) => (
-            <AlbumCard
-              userId={album.userId}
-              user={users?.find(user => user.id === album.userId)}
-              id={album.id}
-              title={album.title}
-              key={album.id}
-            />
-          ))}
-        </div>
-        <Pagination
-          variant='albums'
-          total={totalCount?.length || 0}
-          offset={offset}
-          limit={limit}
-          setOffset={(value: number) => setOffset(value)}
-          setLimit={value => setLimit(value)}
-        />
-      </div>
+      <Pagination
+        variant='albums'
+        total={totalCount?.length || 0}
+        offset={offset}
+        limit={limit}
+        setOffset={(value: number) => setOffset(value)}
+        setLimit={value => setLimit(value)}
+      />
     </div>
   )
 }
