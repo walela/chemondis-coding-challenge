@@ -1,0 +1,9 @@
+
+Dockerfile
+.dockerignore
+.gitignore
+README.md
+
+# Artifacts that will be built during image creation.
+dist
+node_modules

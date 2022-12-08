@@ -35,7 +35,7 @@ export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
                       <h2 id='slide-over-heading' className='text-lg font-medium text-gray-900'>
                         Photo Details
                       </h2>
-                      <div className='ml-3 h-7 flex items-center'>
+                      <div className='ml-3 h-6 flex items-center'>
                         <button
                           type='button'
                           className='bg-white rounded text-gray-700 hover:text-gray-900 focus:ring-2 focus:ring-violet-700'
@@ -50,7 +50,7 @@ export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
                   <div>
                     <div className='pb-1 sm:pb-6'>
                       <div>
-                        <div className='relative h-40 sm:h-96'>
+                        <div className='relative h-40 sm:h-80'>
                           <img
                             className='absolute h-full w-full object-cover'
                             src={updatedImageUrl}
