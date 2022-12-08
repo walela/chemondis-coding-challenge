@@ -14,7 +14,7 @@ function AlbumCard({ id, user, title }: AlbumCardProps) {
         {' '}
         <img
           src={imagePlaceholder}
-          alt='placeholder'
+          alt='album placeholder'
           className='rounded-t-lg sm:w-80 w-full border-b border-gray-100  object-cover'
         />
       </div>

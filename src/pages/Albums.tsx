@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAlbumsQuery, useUsersQuery } from './api/queries'
 import type { Album } from '../utilities/types'
 import AlbumCard from '../components/AlbumCard'
+import Pagination from '../components/Pagination'
 import logo from '../assets/gallery_512.png'
 
 function Albums() {
@@ -21,7 +22,7 @@ function Albums() {
   } = useAlbumsQuery(offset, limit, !!users)
   return (
     <div className='w-full'>
-      <div className=' bg-violet-800 w-full mx-auto py-4 mb-6 shadow'>
+      <div className=' bg-violet-700 w-full mx-auto py-4 mb-6 shadow'>
         <div className='w-96 mx-auto flex gap-4 items-center'>
           <img src={logo} width={48} alt='logo' />
           <h1 className='font-logo text-4xl text-center text-white font-bold tracking-wider border-b-2 border-white'>
@@ -41,6 +42,14 @@ function Albums() {
             />
           ))}
         </div>
+        <Pagination
+          variant='albums'
+          total={100}
+          offset={offset}
+          limit={limit}
+          setOffset={(value: number) => setOffset(value)}
+          setLimit={value => setLimit(value)}
+        />
       </div>
     </div>
   )
