@@ -6,10 +6,13 @@ import Pagination from '@/components/Pagination'
 
 import PhotoCard from '@/components/Photo/PhotoCard'
 import Skeleton from '@/components/Photo/PhotoSkeleton'
+import Panel from '@/components/Panel'
 
 function Photos() {
   const [limit, setLimit] = useState(20)
   const [offset, setOffset] = useState(0)
+  const [openPanel, setOpenPanel] = useState<boolean>(false)
+  const [albumInfo, setAlbumInfo] = useState({})
 
   // url state
   const { id } = useParams()
@@ -28,8 +31,8 @@ function Photos() {
 
   if (isLoading)
     return (
-      <div className='max-w-6xl mx-auto pb-12'>
-        <h1 className='text-4xl text-indigo-800 text-center py-4 font-extrabold underline decoration-wavy'>
+      <div className='max-w-6xl mx-auto px-4'>
+        <h1 className='text-4xl text-cyan-700 text-center pb-4 font-extrabold underline decoration-wavy'>
           {location.state.user.name}'s Photos
         </h1>
         <div className='w-11/12 py-4 mx-auto'>
@@ -50,7 +53,7 @@ function Photos() {
 
   return (
     <div className='max-w-6xl mx-auto px-4'>
-      <h1 className='text-4xl text-indigo-800 text-center py-4 font-extrabold underline decoration-wavy'>
+      <h1 className='text-4xl text-cyan-700 text-center py-4 font-extrabold underline decoration-wavy'>
         {location.state.user.name}'s Photos
       </h1>
       <div className='w-11/12 py-4 mx-auto'>
@@ -69,9 +72,12 @@ function Photos() {
             id={photo.id}
             thumbnailUrl={photo.thumbnailUrl}
             title={photo.title}
+            openPanel={openPanel}
+            setOpenPanel={setOpenPanel}
           />
         ))}
       </div>
+      <Panel open={openPanel} setOpen={setOpenPanel} albumInfo={albumInfo} />
       <Pagination
         variant='photos'
         total={totalCount?.length || 0}

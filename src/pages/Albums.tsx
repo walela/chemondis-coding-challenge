@@ -15,6 +15,7 @@ function Albums() {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(20)
 
+
   /**
    * queries are run conditionally. the album query is run once the user
    * query is complete and the album count query is only run once the initial albums
@@ -26,7 +27,7 @@ function Albums() {
 
   useEffect(() => {
     if (error && error instanceof Error) {
-      console.log('error')
+      console.error('error')
       toast.error(`Something went wrong: ${error.message}`)
     }
   }, [error])

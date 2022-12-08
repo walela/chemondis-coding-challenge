@@ -30,7 +30,7 @@ export const useUsersQuery = () => {
 export const useAlbumsQuery = (start: number, limit: number, enabled: boolean) => {
   return useQuery(['albums', start, limit], () => sleep(2500).then(() => getAlbums(start, limit)), {
     enabled,
-    retry: 3,
+    retry: 2,
   })
 }
 
@@ -53,7 +53,7 @@ export const usePhotosQuery = (albumId: number, start: number, limit: number, en
     () => sleep(2000).then(() => getPhotos(albumId, start, limit)),
     {
       enabled,
-      retry: 3,
+      retry: 2,
     }
   )
 }
