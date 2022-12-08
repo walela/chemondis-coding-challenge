@@ -27,7 +27,7 @@ function PhotoCard(props: PhotoCardProps) {
 
   return (
     <div
-      className='w-full sm:w-80 bg-gray-50 rounded rounded-t-lg shadow-md flex flex-col gap-4 cursor-pointer'
+      className='w-full sm:w-80 bg-gray-50 rounded-lg shadow-md flex flex-col gap-4 cursor-pointer hover:shadow-xl'
       onClick={() => {
         props.setPhotoDetails(photoDetails)
         props.setOpenPanel(!props.openPanel)
