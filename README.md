@@ -56,3 +56,7 @@ The project is a standard client-rendered application using:
 - [React Router v6](https://reactrouter.com/en/main/start/overview) for client-side routing
 
 
+Potential improvements include:
+- Refactor some state (e.g users) into a global Context 
+- Extract utility classes into re-usable classes to improve readability
+- Add unit tests
