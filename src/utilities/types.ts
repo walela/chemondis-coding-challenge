@@ -27,3 +27,12 @@ export type Album = {
   id: number
   title: string
 }
+
+export type Photo = {
+  albumId: number
+  id: number
+  userId: number
+  title: string
+  url: string
+  thumbnailUrl: string
+}
