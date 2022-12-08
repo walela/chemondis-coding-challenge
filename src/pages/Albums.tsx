@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import {
-  useAlbumsQuery,
-  useUsersQuery,
-  useAlbumCountQuery,
-} from './api/queries'
-import type { Album } from '@/utilities/types'
+import { useState, useEffect } from 'react'
+import { toast } from 'react-hot-toast'
+import { useAlbumsQuery, useUsersQuery, useAlbumCountQuery } from './api/queries'
 import AlbumCard from '@/components/Album/AlbumCard'
 import AlbumSkeleton from '@/components/Album/AlbumSkeleton'
 import Pagination from '@/components/Pagination'
-import logo from '@/assets/gallery_512.png'
+import type { Album } from '@/utilities/types'
 
 function Albums() {
   /***
    * offset - the number of albums that need to be skipped when fetching. defaults to 0
    * because initially we want to fetch from the beginning.
-   *
    * limit - the number of albums we want to fetch. defaults to 20
    ****/
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(20)
+
+  /**
+   * queries are run conditionally. the album query is run once the user
+   * query is complete and the album count query is only run once the initial albums
+   * are fetched
+   */
   const { data: users } = useUsersQuery()
-  // only run the album query once the users query is complete
-  const {
-    isLoading,
-    error,
-    data: albums,
-  } = useAlbumsQuery(offset, limit, !!users)
-  // only fetch the total album count once the initial albums are fetched
+  const { isLoading, error, data: albums } = useAlbumsQuery(offset, limit, !!users)
   const { data: totalCount } = useAlbumCountQuery(!!albums)
+
+  useEffect(() => {
+    if (error && error instanceof Error) {
+      console.log('error')
+      toast.error(`Something went wrong: ${error.message}`)
+    }
+  }, [error])
 
   if (isLoading)
     return (

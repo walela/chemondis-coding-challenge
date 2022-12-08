@@ -8,10 +8,10 @@ function AlbumCard({ id, user, title }: AlbumCardProps) {
   // create an invariant placeholder image color from the user id
   let imageColor = stc(user?.id).slice(1)
   let imagePlaceholder = `https://via.placeholder.com/256x200/${imageColor}/ffffff?text=Album ${id}`
+  
   return (
     <div className='w-full sm:w-80 bg-slate-50 rounded-lg shadow-md flex flex-col gap-4 cursor-pointer hover:shadow-lg '>
       <div className='w-full'>
-        {' '}
         <img
           src={imagePlaceholder}
           alt='album placeholder'
@@ -22,15 +22,11 @@ function AlbumCard({ id, user, title }: AlbumCardProps) {
 
       <div className='px-6 py-4 mb-4 flex flex-col gap-4'>
         <div>
-          <h2 className='text-xs text-gray-500  uppercase tracking-wider'>
-            Album Title
-          </h2>
+          <h2 className='text-xs text-gray-500  uppercase tracking-wider'>Album Title</h2>
           <h2 className='text-gray-700 truncate'>{title}</h2>
         </div>
         <div>
-          <h2 className='text-xs text-gray-500 uppercase tracking-wider'>
-            Owner
-          </h2>
+          <h2 className='text-xs text-gray-500 uppercase tracking-wider'>Owner</h2>
           <h2 className='text-gray-700 leading-relaxed'>{user?.name}</h2>
         </div>
         <div className=' text-indigo-500 hover:text-indigo-400 '>

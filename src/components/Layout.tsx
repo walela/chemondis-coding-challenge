@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import logo from '@/assets/gallery_512.png'
+
 function Layout() {
   return (
     <div className='w-full'>
