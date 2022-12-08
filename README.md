@@ -34,5 +34,15 @@ Use the libraries, frameworks and tools of your choice. The layout and design ar
 - [x] documentation
 
 
-# Implementation
+# Installation
+
+To run the project, clone the repository and run `yarn install` (or equivalent) and `yarn dev`.
+
+If you have `Docker`, `node` and `yarn` installed, you can also run this project inside a Docker container by
+`cd`ing into the parent directory and running:
+
+`docker build -t photo-bucket` to build the image
+
+and then
+`docker run -p 3000:3000 -d photo-bucket` to run the application
 

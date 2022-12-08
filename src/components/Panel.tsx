@@ -12,7 +12,7 @@ type PanelProps = {
 
 export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
   let updatedImageUrl = photoDetails.url?.concat(`/ffffff?text=Photo ${photoDetails.id}`)
-  
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='fixed inset-0 overflow-hidden' onClose={setOpen}>
@@ -51,6 +51,7 @@ export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
                     <div className='pb-1 sm:pb-6'>
                       <div>
                         <div className='relative h-40 sm:h-80'>
+                          {/*eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                           <img
                             className='absolute h-full w-full object-cover'
                             src={updatedImageUrl}
