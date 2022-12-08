@@ -69,9 +69,10 @@ function Photos() {
       <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
         {photos?.map(photo => (
           <PhotoCard
+            key={photo.id}
             photo={photo}
             albumTitle={location.state.title}
-            owner={location.state.name}
+            owner={location.state.user.name}
             setPhotoDetails={setPhotoDetails}
             openPanel={openPanel}
             setOpenPanel={setOpenPanel}
