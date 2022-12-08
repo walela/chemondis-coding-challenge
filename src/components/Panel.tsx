@@ -12,8 +12,7 @@ type PanelProps = {
 
 export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
   let updatedImageUrl = photoDetails.url?.concat(`/ffffff?text=Photo ${photoDetails.id}`)
-  console.log(photoDetails.owner)
-
+  
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='fixed inset-0 overflow-hidden' onClose={setOpen}>
@@ -55,7 +54,8 @@ export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
                           <img
                             className='absolute h-full w-full object-cover'
                             src={updatedImageUrl}
-                            alt=''
+                            alt='full width image'
+                            loading='lazy'
                           />
                         </div>
                         <div className='mt-6 px-6 py-2 mb-4 flex flex-col gap-2'>
