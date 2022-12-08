@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
-import type { User, Album } from '../../utilities/types'
+import type { User, Album } from '@/utilities/types'
+import { sleep } from '@/utilities/sleep'
 
 async function getAlbums(start = 0, limit?: number): Promise<Album[]> {
   let apiUrl = `https://jsonplaceholder.typicode.com/albums?_start=${start}&_limit=${limit}`
@@ -13,10 +14,14 @@ export const useAlbumsQuery = (
   limit: number,
   enabled: boolean
 ) => {
-  return useQuery(['albums', start, limit], () => getAlbums(start, limit), {
-    enabled,
-    retry: 3,
-  })
+  return useQuery(
+    ['albums', start, limit],
+    () => sleep(2500).then(() => getAlbums(start, limit)),
+    {
+      enabled,
+      retry: 3,
+    }
+  )
 }
 
 const getUsers = async (): Promise<User[]> => {
