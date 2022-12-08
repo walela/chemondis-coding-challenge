@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import { useAlbumsQuery, useUsersQuery } from './api/queries'
+import {
+  useAlbumsQuery,
+  useUsersQuery,
+  useAlbumCountQuery,
+} from './api/queries'
 import type { Album } from '@/utilities/types'
 import AlbumCard from '@/components/Album/AlbumCard'
 import AlbumSkeleton from '@/components/Album/AlbumSkeleton'
@@ -22,7 +26,8 @@ function Albums() {
     error,
     data: albums,
   } = useAlbumsQuery(offset, limit, !!users)
-
+  // only fetch the total album count once the initial albums are fetched
+  const { data: totalCount } = useAlbumCountQuery(!!albums)
 
   if (isLoading)
     return (
@@ -69,7 +74,7 @@ function Albums() {
         </div>
         <Pagination
           variant='albums'
-          total={100}
+          total={totalCount?.length || 0}
           offset={offset}
           limit={limit}
           setOffset={(value: number) => setOffset(value)}
