@@ -5,12 +5,9 @@ Deployment: https://photobucket-chemondis.vercel.app/
 Consume the JSONPlaceholder Album API and build an ES6 application to view albums and photos.
 Use the libraries, frameworks and tools of your choice. The layout and design are up to you.
 
-Pagination of albums: 
-- https://jsonplaceholder.typicode.com/albums?_start=0&_limit=5
-Photos of a specific album:
-- https://jsonplaceholder.typicode.com/photos?albumId=5&_start=0&_limit=5
-Information on users: 
-- https://jsonplaceholder.typicode.com/users
+- Pagination of albums: https://jsonplaceholder.typicode.com/albums?_start=0&_limit=5
+- Photos of a specific album: https://jsonplaceholder.typicode.com/photos?albumId=5&_start=0&_limit=5
+- Information on users: https://jsonplaceholder.typicode.com/users
 
 ## Album Page
 - [x] display the albums in a grid
@@ -33,5 +30,9 @@ Information on users:
 - [x] also the photos owner, album and title are shown
 
 ## Other Requirements
-- [] to run the project via docker
+- [x] to run the project via docker
 - [x] documentation
+
+
+# Implementation
+
