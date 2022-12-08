@@ -46,3 +46,13 @@ If you have `Docker`, `node` and `yarn` installed, you can also run this project
 and then
 `docker run -p 3000:3000 -d photo-bucket` to run the application
 
+# Implementation
+The project is a standard client-rendered application using:
+
+- React 18 bootstrapped minimally with [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/) and [Headless UI](https://headlessui.com/) for utility classes and styling 
+- [React Query](https://tanstack.com/query/v4/docs/overview) and Axios for data fetching and caching. RQ also dedupes any duplicate requests
+  which improves the performance of the application, and handles retries and errors gracefully.
+- [React Router v6](https://reactrouter.com/en/main/start/overview) for client-side routing
+
+
