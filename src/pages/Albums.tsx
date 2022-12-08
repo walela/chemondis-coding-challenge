@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAlbumsQuery, useUsersQuery } from './api/queries'
 import type { Album } from '../utilities/types'
-import AlbumCard from '../components/AlbumCard'
+import AlbumCard from '../components/Album/AlbumCard'
 import Pagination from '../components/Pagination'
 import logo from '../assets/gallery_512.png'
 

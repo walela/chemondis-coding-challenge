@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { Album, User } from '../utilities/types'
+import type { Album, User } from '@/utilities/types'
 import stc from 'string-to-color'
 
 type AlbumCardProps = Album & { user: User | undefined }
