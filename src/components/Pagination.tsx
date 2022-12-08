@@ -19,8 +19,10 @@ function Pagination({
     if (offset > 0) {
       setOffset(offset - limit)
     }
+    // edge case - avoid negative offsets when the limit is higher than 20
+    // sometimes
     if (offset - limit < 0) {
-      return
+      setOffset(0)
     }
   }
 
@@ -31,7 +33,7 @@ function Pagination({
   }
   return (
     <div
-      className='bg-white px-4 py-4 w-11/12 mx-auto flex items-center rounded justify-center border-t border-gray-200 sm:px-4'
+      className='bg-white p-4 mb-6 w-11/12 mx-auto flex items-center rounded justify-center border border-gray-300 shadow-sm'
       aria-label='Pagination'>
       <div className='hidden sm:block'>
         <p className='text-sm text-gray-700'>
