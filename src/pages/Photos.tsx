@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useUsersQuery, usePhotosQuery, usePhotosCountQuery } from './api/queries'
 import { toast } from 'react-hot-toast'
 import { useParams, useLocation } from 'react-router-dom'
+import type { PhotoDetails } from '@/utilities/types'
 import Pagination from '@/components/Pagination'
 
 import PhotoCard from '@/components/Photo/PhotoCard'
@@ -12,7 +13,7 @@ function Photos() {
   const [limit, setLimit] = useState(20)
   const [offset, setOffset] = useState(0)
   const [openPanel, setOpenPanel] = useState<boolean>(false)
-  const [albumInfo, setAlbumInfo] = useState({})
+  const [photoDetails, setPhotoDetails] = useState({} as PhotoDetails)
 
   // url state
   const { id } = useParams()
@@ -68,16 +69,16 @@ function Photos() {
       <div className='flex w-11/12 mx-auto gap-6 mb-8 flex-wrap'>
         {photos?.map(photo => (
           <PhotoCard
-            key={photo.id}
-            id={photo.id}
-            thumbnailUrl={photo.thumbnailUrl}
-            title={photo.title}
+            photo={photo}
+            albumTitle={location.state.title}
+            owner={location.state.name}
+            setPhotoDetails={setPhotoDetails}
             openPanel={openPanel}
             setOpenPanel={setOpenPanel}
           />
         ))}
       </div>
-      <Panel open={openPanel} setOpen={setOpenPanel} albumInfo={albumInfo} />
+      <Panel open={openPanel} setOpen={setOpenPanel} photoDetails={photoDetails} />
       <Pagination
         variant='photos'
         total={totalCount?.length || 0}

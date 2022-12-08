@@ -2,19 +2,15 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon as XIcon } from '@heroicons/react/24/outline'
 
+import type { PhotoDetails } from '@/utilities/types'
+
 type PanelProps = {
   open: boolean
   setOpen: (value: boolean) => void
-  albumInfo: {
-    url: string
-    title: string
-    albumId: number
-    albumTitle: string
-    owner: string
-  }
+  photoDetails: PhotoDetails
 }
 
-export default function Panel({ open, setOpen, albumInfo }: PanelProps) {
+export default function Panel({ open, setOpen, photoDetails }: PanelProps) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='fixed inset-0 overflow-hidden' onClose={setOpen}>
@@ -30,17 +26,17 @@ export default function Panel({ open, setOpen, albumInfo }: PanelProps) {
               leave='transform transition ease-in-out duration-500 sm:duration-700'
               leaveFrom='translate-x-0'
               leaveTo='translate-x-full'>
-              <div className='w-screen max-w-md'>
-                <div className='h-full mt-16 flex flex-col bg-neutral-50 shadow-md overflow-y-scroll'>
+              <div className='w-screen max-w-lg'>
+                <div className='h-full mt-20 flex flex-col bg-neutral-50 shadow-md overflow-y-scroll'>
                   <div className='px-4 py-6 sm:px-6'>
                     <div className='flex items-start justify-between'>
                       <h2 id='slide-over-heading' className='text-lg font-medium text-gray-900'>
-                        Photo Details
+                        Photo {photoDetails.id} Details
                       </h2>
                       <div className='ml-3 h-7 flex items-center'>
                         <button
                           type='button'
-                          className='bg-white rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-finmidpurple'
+                          className='bg-white rounded text-gray-700 hover:text-gray-900 focus:ring-2 focus:ring-violet-700'
                           onClick={() => setOpen(false)}>
                           <span className='sr-only'>Close panel</span>
                           <XIcon className='h-6 w-6' aria-hidden='true' />
@@ -55,7 +51,7 @@ export default function Panel({ open, setOpen, albumInfo }: PanelProps) {
                         <div className='relative h-40 sm:h-56'>
                           <img
                             className='absolute h-full w-full object-cover'
-                            src={albumInfo.url}
+                            src={photoDetails.url}
                             alt=''
                           />
                         </div>
@@ -64,10 +60,10 @@ export default function Panel({ open, setOpen, albumInfo }: PanelProps) {
                             <div>
                               <div className='flex items-center'>
                                 <h3 className='font-bold text-xl text-gray-900 sm:text-2xl'>
-                                  {albumInfo.title}
+                                  {photoDetails.title}
                                 </h3>
                               </div>
-                              <p className='text-sm text-gray-500'>{albumInfo.albumTitle}</p>
+                              <p className='text-sm text-gray-500'>{photoDetails.albumTitle}</p>
                             </div>
                           </div>
                         </div>
@@ -77,13 +73,13 @@ export default function Panel({ open, setOpen, albumInfo }: PanelProps) {
                       <dl className='space-y-8 px-4 sm:px-6 sm:space-y-6'>
                         <div>
                           <dt className='text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0'>
-                            Merchant
+                            Owner
                           </dt>
                           <dd className='mt-1 text-sm text-gray-900 sm:col-span-2'>
                             <div className='flex items-center'>
                               <div>
                                 <div className='text-sm font-medium text-gray-900'>
-                                  {albumInfo.owner}
+                                  {photoDetails.owner}
                                 </div>
                               </div>
                             </div>
