@@ -17,8 +17,8 @@ function Photos() {
 
   // conditional data queries
   const { data: users } = useUsersQuery()
-  const { isLoading, error, data: photos } = usePhotosQuery(+id, offset, limit, !!users)
-  const { data: totalCount } = usePhotosCountQuery(+!!id, !!photos)
+  const { isLoading, error, data: photos } = usePhotosQuery(+id!, offset, limit, !!users)
+  const { data: totalCount } = usePhotosCountQuery(+id!, !!photos)
 
   useEffect(() => {
     if (error && error instanceof Error) {
